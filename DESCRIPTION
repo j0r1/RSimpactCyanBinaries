@@ -1,0 +1,8 @@
+Package: SimpactCyan4Shiny
+Version: 0.0-1
+Date: 2017-03-06
+Title: Compile Simpact Cyan binaries through R
+Author: Jori Liesenborgs
+Maintainer: Jori Liesenborgs <jori.liesenborgs@uhasselt.be>
+Description: TODO
+License: GPL-2
