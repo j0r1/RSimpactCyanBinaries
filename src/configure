@@ -1,10 +1,12 @@
 #!/bin/bash
 
 PREF=simpact-cyan-0.21.0
+STARTDIR=`pwd`
 
 mkdir ../exec/
 mkdir ../inst/
 mkdir ../inst/simpact/ 
+mkdir local
 
 cp -r $PREF/data ../inst/simpact/
 cp -r $PREF/python ../inst/simpact/
@@ -16,15 +18,30 @@ cp -r $PREF/python ../inst/simpact/
 #
 #exit 0
 
-(cd gsl-1.16/ ; CFLAGS=-O2 ./configure && make clean && make)
-(cd tiff-4.0.6/ ; CFLAGS=-O2 ./configure --disable-jpeg --disable-lzma && make clean && make)
+echo "Building GSL"
+(
+cd gsl-1.16/ ; 
+CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" 
 
-LIBGSL=`find gsl-1.16/ -name libgsl.a`
-LIBGSLCBLAS=`find gsl-1.16/ -name libgslcblas.a`
-LIBTIFF=`find tiff-4.0.6/ -name libtiff.a`
+# Documentation does not need to be built or installed, disable this to avoid errors at this point
+cat << EOF > doc/Makefile
+all:
 
-# TODO: add GSL and TIFF dirs
-INCLUDES="-I$PREF/src/ 
+install:
+
+EOF
+
+make && make install) #>/dev/null
+
+echo "Building TIFF"
+(cd tiff-4.0.6/ ; CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" --disable-jpeg --disable-lzma && make && make install) #>/dev/null
+
+LIBGSL=`find local/ -name libgsl.a`
+LIBGSLCBLAS=`find local/ -name libgslcblas.a`
+LIBTIFF=`find local/ -name libtiff.a`
+
+INCLUDES="-I$STARTDIR/local/include
+         -I$PREF/src/ 
 	 -I$PREF/src/lib 
 	 -I$PREF/src/lib/core 
          -I$PREF/src/lib/mnrm 
