@@ -1,0 +1,1217 @@
+INCLUDES=-I.
+
+.c.o:
+	gcc -O2 -c $(INCLUDES) -o $@ $<
+
+libgslpart.a: \
+	complex/inline.o \
+	complex/math.o \
+	sys/coerce.o \
+	sys/expm1.o \
+	sys/fcmp.o \
+	sys/fdiv.o \
+	sys/hypot.o \
+	sys/infnan.o \
+	sys/invhyp.o \
+	sys/ldfrexp.o \
+	sys/log1p.o \
+	sys/minmax.o \
+	sys/pow_int.o \
+	sys/prec.o \
+	integration/cquad.o \
+	integration/cquad_const.o \
+	integration/err.o \
+	integration/glfixed.o \
+	integration/qag.o \
+	integration/qagp.o \
+	integration/qags.o \
+	integration/qawc.o \
+	integration/qawf.o \
+	integration/qawo.o \
+	integration/qaws.o \
+	integration/qcheb.o \
+	integration/qk.o \
+	integration/qk15.o \
+	integration/qk21.o \
+	integration/qk31.o \
+	integration/qk41.o \
+	integration/qk51.o \
+	integration/qk61.o \
+	integration/qmomo.o \
+	integration/qmomof.o \
+	integration/qng.o \
+	integration/workspace.o \
+	specfunc/airy.o \
+	specfunc/airy_der.o \
+	specfunc/airy_zero.o \
+	specfunc/atanint.o \
+	specfunc/bessel.o \
+	specfunc/bessel_amp_phase.o \
+	specfunc/bessel_i.o \
+	specfunc/bessel_I0.o \
+	specfunc/bessel_I1.o \
+	specfunc/bessel_In.o \
+	specfunc/bessel_Inu.o \
+	specfunc/bessel_j.o \
+	specfunc/bessel_J0.o \
+	specfunc/bessel_J1.o \
+	specfunc/bessel_Jn.o \
+	specfunc/bessel_Jnu.o \
+	specfunc/bessel_k.o \
+	specfunc/bessel_K0.o \
+	specfunc/bessel_K1.o \
+	specfunc/bessel_Kn.o \
+	specfunc/bessel_Knu.o \
+	specfunc/bessel_olver.o \
+	specfunc/bessel_sequence.o \
+	specfunc/bessel_temme.o \
+	specfunc/bessel_y.o \
+	specfunc/bessel_Y0.o \
+	specfunc/bessel_Y1.o \
+	specfunc/bessel_Yn.o \
+	specfunc/bessel_Ynu.o \
+	specfunc/bessel_zero.o \
+	specfunc/beta.o \
+	specfunc/beta_inc.o \
+	specfunc/clausen.o \
+	specfunc/coulomb.o \
+	specfunc/coulomb_bound.o \
+	specfunc/coupling.o \
+	specfunc/dawson.o \
+	specfunc/debye.o \
+	specfunc/dilog.o \
+	specfunc/elementary.o \
+	specfunc/ellint.o \
+	specfunc/elljac.o \
+	specfunc/erfc.o \
+	specfunc/exp.o \
+	specfunc/expint.o \
+	specfunc/expint3.o \
+	specfunc/fermi_dirac.o \
+	specfunc/gamma.o \
+	specfunc/gamma_inc.o \
+	specfunc/gegenbauer.o \
+	specfunc/hyperg.o \
+	specfunc/hyperg_0F1.o \
+	specfunc/hyperg_1F1.o \
+	specfunc/hyperg_2F0.o \
+	specfunc/hyperg_2F1.o \
+	specfunc/hyperg_U.o \
+	specfunc/laguerre.o \
+	specfunc/lambert.o \
+	specfunc/legendre_con.o \
+	specfunc/legendre_H3d.o \
+	specfunc/legendre_poly.o \
+	specfunc/legendre_Qn.o \
+	specfunc/log.o \
+	specfunc/mathieu_angfunc.o \
+	specfunc/mathieu_charv.o \
+	specfunc/mathieu_coeff.o \
+	specfunc/mathieu_radfunc.o \
+	specfunc/mathieu_workspace.o \
+	specfunc/poch.o \
+	specfunc/pow_int.o \
+	specfunc/psi.o \
+	specfunc/result.o \
+	specfunc/shint.o \
+	specfunc/sinint.o \
+	specfunc/synchrotron.o \
+	specfunc/transport.o \
+	specfunc/trig.o \
+	specfunc/zeta.o \
+	err/error.o \
+	err/message.o \
+	err/stream.o \
+	err/strerror.o \
+	randist/bernoulli.o \
+	randist/beta.o \
+	randist/bigauss.o \
+	randist/binomial.o \
+	randist/binomial_tpe.o \
+	randist/cauchy.o \
+	randist/chisq.o \
+	randist/dirichlet.o \
+	randist/discrete.o \
+	randist/erlang.o \
+	randist/exponential.o \
+	randist/exppow.o \
+	randist/fdist.o \
+	randist/flat.o \
+	randist/gamma.o \
+	randist/gauss.o \
+	randist/gausstail.o \
+	randist/gausszig.o \
+	randist/geometric.o \
+	randist/gumbel.o \
+	randist/hyperg.o \
+	randist/landau.o \
+	randist/laplace.o \
+	randist/levy.o \
+	randist/logarithmic.o \
+	randist/logistic.o \
+	randist/lognormal.o \
+	randist/multinomial.o \
+	randist/nbinomial.o \
+	randist/pareto.o \
+	randist/pascal.o \
+	randist/poisson.o \
+	randist/rayleigh.o \
+	randist/shuffle.o \
+	randist/sphere.o \
+	randist/tdist.o \
+	randist/test.o \
+	randist/weibull.o \
+	rng/borosh13.o \
+	rng/cmrg.o \
+	rng/coveyou.o \
+	rng/default.o \
+	rng/file.o \
+	rng/fishman18.o \
+	rng/fishman20.o \
+	rng/fishman2x.o \
+	rng/gfsr4.o \
+	rng/inline.o \
+	rng/knuthran.o \
+	rng/knuthran2.o \
+	rng/knuthran2002.o \
+	rng/lecuyer21.o \
+	rng/minstd.o \
+	rng/mrg.o \
+	rng/mt.o \
+	rng/r250.o \
+	rng/ran0.o \
+	rng/ran1.o \
+	rng/ran2.o \
+	rng/ran3.o \
+	rng/rand.o \
+	rng/rand48.o \
+	rng/random.o \
+	rng/randu.o \
+	rng/ranf.o \
+	rng/ranlux.o \
+	rng/ranlxd.o \
+	rng/ranlxs.o \
+	rng/ranmar.o \
+	rng/rng.o \
+	rng/schrage.o \
+	rng/slatec.o \
+	rng/taus.o \
+	rng/taus113.o \
+	rng/test.o \
+	rng/transputer.o \
+	rng/tt.o \
+	rng/types.o \
+	rng/uni.o \
+	rng/uni32.o \
+	rng/vax.o \
+	rng/waterman14.o \
+	rng/zuf.o 
+	@echo "Removing old library"
+	rm -f $@
+	@echo "Creating "$@
+	ar rcs $@ $^
+
+blas/blas.o: blas/blas.c
+block/block.o: block/block.c
+block/block_source.o: block/block_source.c
+block/file.o: block/file.c
+block/fprintf_source.o: block/fprintf_source.c
+block/fwrite_source.o: block/fwrite_source.c
+block/init.o: block/init.c
+block/init_source.o: block/init_source.c
+block/test.o: block/test.c
+block/test_complex_io.o: block/test_complex_io.c
+block/test_complex_source.o: block/test_complex_source.c
+block/test_io.o: block/test_io.c
+block/test_source.o: block/test_source.c
+bspline/bspline.o: bspline/bspline.c
+bspline/greville.o: bspline/greville.c
+bspline/test.o: bspline/test.c
+cblas/caxpy.o: cblas/caxpy.c
+cblas/ccopy.o: cblas/ccopy.c
+cblas/cdotc_sub.o: cblas/cdotc_sub.c
+cblas/cdotu_sub.o: cblas/cdotu_sub.c
+cblas/cgbmv.o: cblas/cgbmv.c
+cblas/cgemm.o: cblas/cgemm.c
+cblas/cgemv.o: cblas/cgemv.c
+cblas/cgerc.o: cblas/cgerc.c
+cblas/cgeru.o: cblas/cgeru.c
+cblas/chbmv.o: cblas/chbmv.c
+cblas/chemm.o: cblas/chemm.c
+cblas/chemv.o: cblas/chemv.c
+cblas/cher.o: cblas/cher.c
+cblas/cher2.o: cblas/cher2.c
+cblas/cher2k.o: cblas/cher2k.c
+cblas/cherk.o: cblas/cherk.c
+cblas/chpmv.o: cblas/chpmv.c
+cblas/chpr.o: cblas/chpr.c
+cblas/chpr2.o: cblas/chpr2.c
+cblas/cscal.o: cblas/cscal.c
+cblas/csscal.o: cblas/csscal.c
+cblas/cswap.o: cblas/cswap.c
+cblas/csymm.o: cblas/csymm.c
+cblas/csyr2k.o: cblas/csyr2k.c
+cblas/csyrk.o: cblas/csyrk.c
+cblas/ctbmv.o: cblas/ctbmv.c
+cblas/ctbsv.o: cblas/ctbsv.c
+cblas/ctpmv.o: cblas/ctpmv.c
+cblas/ctpsv.o: cblas/ctpsv.c
+cblas/ctrmm.o: cblas/ctrmm.c
+cblas/ctrmv.o: cblas/ctrmv.c
+cblas/ctrsm.o: cblas/ctrsm.c
+cblas/ctrsv.o: cblas/ctrsv.c
+cblas/dasum.o: cblas/dasum.c
+cblas/daxpy.o: cblas/daxpy.c
+cblas/dcopy.o: cblas/dcopy.c
+cblas/ddot.o: cblas/ddot.c
+cblas/dgbmv.o: cblas/dgbmv.c
+cblas/dgemm.o: cblas/dgemm.c
+cblas/dgemv.o: cblas/dgemv.c
+cblas/dger.o: cblas/dger.c
+cblas/dnrm2.o: cblas/dnrm2.c
+cblas/drot.o: cblas/drot.c
+cblas/drotg.o: cblas/drotg.c
+cblas/drotm.o: cblas/drotm.c
+cblas/drotmg.o: cblas/drotmg.c
+cblas/dsbmv.o: cblas/dsbmv.c
+cblas/dscal.o: cblas/dscal.c
+cblas/dsdot.o: cblas/dsdot.c
+cblas/dspmv.o: cblas/dspmv.c
+cblas/dspr.o: cblas/dspr.c
+cblas/dspr2.o: cblas/dspr2.c
+cblas/dswap.o: cblas/dswap.c
+cblas/dsymm.o: cblas/dsymm.c
+cblas/dsymv.o: cblas/dsymv.c
+cblas/dsyr.o: cblas/dsyr.c
+cblas/dsyr2.o: cblas/dsyr2.c
+cblas/dsyr2k.o: cblas/dsyr2k.c
+cblas/dsyrk.o: cblas/dsyrk.c
+cblas/dtbmv.o: cblas/dtbmv.c
+cblas/dtbsv.o: cblas/dtbsv.c
+cblas/dtpmv.o: cblas/dtpmv.c
+cblas/dtpsv.o: cblas/dtpsv.c
+cblas/dtrmm.o: cblas/dtrmm.c
+cblas/dtrmv.o: cblas/dtrmv.c
+cblas/dtrsm.o: cblas/dtrsm.c
+cblas/dtrsv.o: cblas/dtrsv.c
+cblas/dzasum.o: cblas/dzasum.c
+cblas/dznrm2.o: cblas/dznrm2.c
+cblas/hypot.o: cblas/hypot.c
+cblas/icamax.o: cblas/icamax.c
+cblas/idamax.o: cblas/idamax.c
+cblas/isamax.o: cblas/isamax.c
+cblas/izamax.o: cblas/izamax.c
+cblas/sasum.o: cblas/sasum.c
+cblas/saxpy.o: cblas/saxpy.c
+cblas/scasum.o: cblas/scasum.c
+cblas/scnrm2.o: cblas/scnrm2.c
+cblas/scopy.o: cblas/scopy.c
+cblas/sdot.o: cblas/sdot.c
+cblas/sdsdot.o: cblas/sdsdot.c
+cblas/sgbmv.o: cblas/sgbmv.c
+cblas/sgemm.o: cblas/sgemm.c
+cblas/sgemv.o: cblas/sgemv.c
+cblas/sger.o: cblas/sger.c
+cblas/snrm2.o: cblas/snrm2.c
+cblas/srot.o: cblas/srot.c
+cblas/srotg.o: cblas/srotg.c
+cblas/srotm.o: cblas/srotm.c
+cblas/srotmg.o: cblas/srotmg.c
+cblas/ssbmv.o: cblas/ssbmv.c
+cblas/sscal.o: cblas/sscal.c
+cblas/sspmv.o: cblas/sspmv.c
+cblas/sspr.o: cblas/sspr.c
+cblas/sspr2.o: cblas/sspr2.c
+cblas/sswap.o: cblas/sswap.c
+cblas/ssymm.o: cblas/ssymm.c
+cblas/ssymv.o: cblas/ssymv.c
+cblas/ssyr.o: cblas/ssyr.c
+cblas/ssyr2.o: cblas/ssyr2.c
+cblas/ssyr2k.o: cblas/ssyr2k.c
+cblas/ssyrk.o: cblas/ssyrk.c
+cblas/stbmv.o: cblas/stbmv.c
+cblas/stbsv.o: cblas/stbsv.c
+cblas/stpmv.o: cblas/stpmv.c
+cblas/stpsv.o: cblas/stpsv.c
+cblas/strmm.o: cblas/strmm.c
+cblas/strmv.o: cblas/strmv.c
+cblas/strsm.o: cblas/strsm.c
+cblas/strsv.o: cblas/strsv.c
+cblas/test.o: cblas/test.c
+cblas/tests.o: cblas/tests.c
+cblas/test_amax.o: cblas/test_amax.c
+cblas/test_asum.o: cblas/test_asum.c
+cblas/test_axpy.o: cblas/test_axpy.c
+cblas/test_copy.o: cblas/test_copy.c
+cblas/test_dot.o: cblas/test_dot.c
+cblas/test_gbmv.o: cblas/test_gbmv.c
+cblas/test_gemm.o: cblas/test_gemm.c
+cblas/test_gemv.o: cblas/test_gemv.c
+cblas/test_ger.o: cblas/test_ger.c
+cblas/test_hbmv.o: cblas/test_hbmv.c
+cblas/test_hemm.o: cblas/test_hemm.c
+cblas/test_hemv.o: cblas/test_hemv.c
+cblas/test_her.o: cblas/test_her.c
+cblas/test_her2.o: cblas/test_her2.c
+cblas/test_her2k.o: cblas/test_her2k.c
+cblas/test_herk.o: cblas/test_herk.c
+cblas/test_hpmv.o: cblas/test_hpmv.c
+cblas/test_hpr.o: cblas/test_hpr.c
+cblas/test_hpr2.o: cblas/test_hpr2.c
+cblas/test_nrm2.o: cblas/test_nrm2.c
+cblas/test_rot.o: cblas/test_rot.c
+cblas/test_rotg.o: cblas/test_rotg.c
+cblas/test_rotm.o: cblas/test_rotm.c
+cblas/test_rotmg.o: cblas/test_rotmg.c
+cblas/test_sbmv.o: cblas/test_sbmv.c
+cblas/test_scal.o: cblas/test_scal.c
+cblas/test_spmv.o: cblas/test_spmv.c
+cblas/test_spr.o: cblas/test_spr.c
+cblas/test_spr2.o: cblas/test_spr2.c
+cblas/test_swap.o: cblas/test_swap.c
+cblas/test_symm.o: cblas/test_symm.c
+cblas/test_symv.o: cblas/test_symv.c
+cblas/test_syr.o: cblas/test_syr.c
+cblas/test_syr2.o: cblas/test_syr2.c
+cblas/test_syr2k.o: cblas/test_syr2k.c
+cblas/test_syrk.o: cblas/test_syrk.c
+cblas/test_tbmv.o: cblas/test_tbmv.c
+cblas/test_tbsv.o: cblas/test_tbsv.c
+cblas/test_tpmv.o: cblas/test_tpmv.c
+cblas/test_tpsv.o: cblas/test_tpsv.c
+cblas/test_trmm.o: cblas/test_trmm.c
+cblas/test_trmv.o: cblas/test_trmv.c
+cblas/test_trsm.o: cblas/test_trsm.c
+cblas/test_trsv.o: cblas/test_trsv.c
+cblas/xerbla.o: cblas/xerbla.c
+cblas/zaxpy.o: cblas/zaxpy.c
+cblas/zcopy.o: cblas/zcopy.c
+cblas/zdotc_sub.o: cblas/zdotc_sub.c
+cblas/zdotu_sub.o: cblas/zdotu_sub.c
+cblas/zdscal.o: cblas/zdscal.c
+cblas/zgbmv.o: cblas/zgbmv.c
+cblas/zgemm.o: cblas/zgemm.c
+cblas/zgemv.o: cblas/zgemv.c
+cblas/zgerc.o: cblas/zgerc.c
+cblas/zgeru.o: cblas/zgeru.c
+cblas/zhbmv.o: cblas/zhbmv.c
+cblas/zhemm.o: cblas/zhemm.c
+cblas/zhemv.o: cblas/zhemv.c
+cblas/zher.o: cblas/zher.c
+cblas/zher2.o: cblas/zher2.c
+cblas/zher2k.o: cblas/zher2k.c
+cblas/zherk.o: cblas/zherk.c
+cblas/zhpmv.o: cblas/zhpmv.c
+cblas/zhpr.o: cblas/zhpr.c
+cblas/zhpr2.o: cblas/zhpr2.c
+cblas/zscal.o: cblas/zscal.c
+cblas/zswap.o: cblas/zswap.c
+cblas/zsymm.o: cblas/zsymm.c
+cblas/zsyr2k.o: cblas/zsyr2k.c
+cblas/zsyrk.o: cblas/zsyrk.c
+cblas/ztbmv.o: cblas/ztbmv.c
+cblas/ztbsv.o: cblas/ztbsv.c
+cblas/ztpmv.o: cblas/ztpmv.c
+cblas/ztpsv.o: cblas/ztpsv.c
+cblas/ztrmm.o: cblas/ztrmm.c
+cblas/ztrmv.o: cblas/ztrmv.c
+cblas/ztrsm.o: cblas/ztrsm.c
+cblas/ztrsv.o: cblas/ztrsv.c
+cdf/beta.o: cdf/beta.c
+cdf/betainv.o: cdf/betainv.c
+cdf/beta_inc.o: cdf/beta_inc.c
+cdf/binomial.o: cdf/binomial.c
+cdf/cauchy.o: cdf/cauchy.c
+cdf/cauchyinv.o: cdf/cauchyinv.c
+cdf/chisq.o: cdf/chisq.c
+cdf/chisqinv.o: cdf/chisqinv.c
+cdf/exponential.o: cdf/exponential.c
+cdf/exponentialinv.o: cdf/exponentialinv.c
+cdf/exppow.o: cdf/exppow.c
+cdf/fdist.o: cdf/fdist.c
+cdf/fdistinv.o: cdf/fdistinv.c
+cdf/flat.o: cdf/flat.c
+cdf/flatinv.o: cdf/flatinv.c
+cdf/gamma.o: cdf/gamma.c
+cdf/gammainv.o: cdf/gammainv.c
+cdf/gauss.o: cdf/gauss.c
+cdf/gaussinv.o: cdf/gaussinv.c
+cdf/geometric.o: cdf/geometric.c
+cdf/gumbel1.o: cdf/gumbel1.c
+cdf/gumbel1inv.o: cdf/gumbel1inv.c
+cdf/gumbel2.o: cdf/gumbel2.c
+cdf/gumbel2inv.o: cdf/gumbel2inv.c
+cdf/hypergeometric.o: cdf/hypergeometric.c
+cdf/laplace.o: cdf/laplace.c
+cdf/laplaceinv.o: cdf/laplaceinv.c
+cdf/logistic.o: cdf/logistic.c
+cdf/logisticinv.o: cdf/logisticinv.c
+cdf/lognormal.o: cdf/lognormal.c
+cdf/lognormalinv.o: cdf/lognormalinv.c
+cdf/nbinomial.o: cdf/nbinomial.c
+cdf/pareto.o: cdf/pareto.c
+cdf/paretoinv.o: cdf/paretoinv.c
+cdf/pascal.o: cdf/pascal.c
+cdf/poisson.o: cdf/poisson.c
+cdf/rayleigh.o: cdf/rayleigh.c
+cdf/rayleighinv.o: cdf/rayleighinv.c
+cdf/tdist.o: cdf/tdist.c
+cdf/tdistinv.o: cdf/tdistinv.c
+cdf/test.o: cdf/test.c
+cdf/test_auto.o: cdf/test_auto.c
+cdf/weibull.o: cdf/weibull.c
+cdf/weibullinv.o: cdf/weibullinv.c
+cheb/deriv.o: cheb/deriv.c
+cheb/eval.o: cheb/eval.c
+cheb/init.o: cheb/init.c
+cheb/integ.o: cheb/integ.c
+cheb/test.o: cheb/test.c
+combination/combination.o: combination/combination.c
+combination/file.o: combination/file.c
+combination/init.o: combination/init.c
+combination/inline.o: combination/inline.c
+combination/test.o: combination/test.c
+complex/inline.o: complex/inline.c
+complex/math.o: complex/math.c
+complex/test.o: complex/test.c
+const/test.o: const/test.c
+deriv/deriv.o: deriv/deriv.c
+deriv/test.o: deriv/test.c
+dht/dht.o: dht/dht.c
+dht/test.o: dht/test.c
+diff/diff.o: diff/diff.c
+diff/test.o: diff/test.c
+doc/examples/blas.o: doc/examples/blas.c
+doc/examples/block.o: doc/examples/block.c
+doc/examples/bspline.o: doc/examples/bspline.c
+doc/examples/cblas.o: doc/examples/cblas.c
+doc/examples/cdf.o: doc/examples/cdf.c
+doc/examples/cheb.o: doc/examples/cheb.c
+doc/examples/combination.o: doc/examples/combination.c
+doc/examples/const.o: doc/examples/const.c
+doc/examples/demo_fn.o: doc/examples/demo_fn.c
+doc/examples/diff.o: doc/examples/diff.c
+doc/examples/dwt.o: doc/examples/dwt.c
+doc/examples/eigen.o: doc/examples/eigen.c
+doc/examples/eigen_nonsymm.o: doc/examples/eigen_nonsymm.c
+doc/examples/expfit.o: doc/examples/expfit.c
+doc/examples/fft.o: doc/examples/fft.c
+doc/examples/fftmr.o: doc/examples/fftmr.c
+doc/examples/fftreal.o: doc/examples/fftreal.c
+doc/examples/fitting.o: doc/examples/fitting.c
+doc/examples/fitting2.o: doc/examples/fitting2.c
+doc/examples/fitting3.o: doc/examples/fitting3.c
+doc/examples/histogram.o: doc/examples/histogram.c
+doc/examples/histogram2d.o: doc/examples/histogram2d.c
+doc/examples/ieee.o: doc/examples/ieee.c
+doc/examples/ieeeround.o: doc/examples/ieeeround.c
+doc/examples/integration.o: doc/examples/integration.c
+doc/examples/interp.o: doc/examples/interp.c
+doc/examples/interpp.o: doc/examples/interpp.c
+doc/examples/intro.o: doc/examples/intro.c
+doc/examples/linalglu.o: doc/examples/linalglu.c
+doc/examples/matrix.o: doc/examples/matrix.c
+doc/examples/matrixw.o: doc/examples/matrixw.c
+doc/examples/min.o: doc/examples/min.c
+doc/examples/monte.o: doc/examples/monte.c
+doc/examples/multimin.o: doc/examples/multimin.c
+doc/examples/multiminfn.o: doc/examples/multiminfn.c
+doc/examples/multiset.o: doc/examples/multiset.c
+doc/examples/nlfit.o: doc/examples/nlfit.c
+doc/examples/nmsimplex.o: doc/examples/nmsimplex.c
+doc/examples/ntupler.o: doc/examples/ntupler.c
+doc/examples/ntuplew.o: doc/examples/ntuplew.c
+doc/examples/ode-initval-low-level.o: doc/examples/ode-initval-low-level.c
+doc/examples/ode-initval.o: doc/examples/ode-initval.c
+doc/examples/odefixed.o: doc/examples/odefixed.c
+doc/examples/permseq.o: doc/examples/permseq.c
+doc/examples/permshuffle.o: doc/examples/permshuffle.c
+doc/examples/polyroots.o: doc/examples/polyroots.c
+doc/examples/qrng.o: doc/examples/qrng.c
+doc/examples/randpoisson.o: doc/examples/randpoisson.c
+doc/examples/randwalk.o: doc/examples/randwalk.c
+doc/examples/rng.o: doc/examples/rng.c
+doc/examples/rngunif.o: doc/examples/rngunif.c
+doc/examples/robfit.o: doc/examples/robfit.c
+doc/examples/rootnewt.o: doc/examples/rootnewt.c
+doc/examples/roots.o: doc/examples/roots.c
+doc/examples/siman.o: doc/examples/siman.c
+doc/examples/sortsmall.o: doc/examples/sortsmall.c
+doc/examples/specfun.o: doc/examples/specfun.c
+doc/examples/specfun_e.o: doc/examples/specfun_e.c
+doc/examples/stat.o: doc/examples/stat.c
+doc/examples/statsort.o: doc/examples/statsort.c
+doc/examples/sum.o: doc/examples/sum.c
+doc/examples/vector.o: doc/examples/vector.c
+doc/examples/vectorr.o: doc/examples/vectorr.c
+doc/examples/vectorview.o: doc/examples/vectorview.c
+doc/examples/vectorw.o: doc/examples/vectorw.c
+eigen/francis.o: eigen/francis.c
+eigen/gen.o: eigen/gen.c
+eigen/genherm.o: eigen/genherm.c
+eigen/genhermv.o: eigen/genhermv.c
+eigen/gensymm.o: eigen/gensymm.c
+eigen/gensymmv.o: eigen/gensymmv.c
+eigen/genv.o: eigen/genv.c
+eigen/herm.o: eigen/herm.c
+eigen/hermv.o: eigen/hermv.c
+eigen/jacobi.o: eigen/jacobi.c
+eigen/nonsymm.o: eigen/nonsymm.c
+eigen/nonsymmv.o: eigen/nonsymmv.c
+eigen/qrstep.o: eigen/qrstep.c
+eigen/schur.o: eigen/schur.c
+eigen/sort.o: eigen/sort.c
+eigen/symm.o: eigen/symm.c
+eigen/symmv.o: eigen/symmv.c
+eigen/test.o: eigen/test.c
+err/error.o: err/error.c
+err/message.o: err/message.c
+err/stream.o: err/stream.c
+err/strerror.o: err/strerror.c
+err/test.o: err/test.c
+fft/bitreverse.o: fft/bitreverse.c
+fft/compare_source.o: fft/compare_source.c
+fft/c_init.o: fft/c_init.c
+fft/c_main.o: fft/c_main.c
+fft/c_pass_2.o: fft/c_pass_2.c
+fft/c_pass_3.o: fft/c_pass_3.c
+fft/c_pass_4.o: fft/c_pass_4.c
+fft/c_pass_5.o: fft/c_pass_5.c
+fft/c_pass_6.o: fft/c_pass_6.c
+fft/c_pass_7.o: fft/c_pass_7.c
+fft/c_pass_n.o: fft/c_pass_n.c
+fft/c_radix2.o: fft/c_radix2.c
+fft/dft.o: fft/dft.c
+fft/dft_source.o: fft/dft_source.c
+fft/factorize.o: fft/factorize.c
+fft/fft.o: fft/fft.c
+fft/hc_init.o: fft/hc_init.c
+fft/hc_main.o: fft/hc_main.c
+fft/hc_pass_2.o: fft/hc_pass_2.c
+fft/hc_pass_3.o: fft/hc_pass_3.c
+fft/hc_pass_4.o: fft/hc_pass_4.c
+fft/hc_pass_5.o: fft/hc_pass_5.c
+fft/hc_pass_n.o: fft/hc_pass_n.c
+fft/hc_radix2.o: fft/hc_radix2.c
+fft/hc_unpack.o: fft/hc_unpack.c
+fft/real_init.o: fft/real_init.c
+fft/real_main.o: fft/real_main.c
+fft/real_pass_2.o: fft/real_pass_2.c
+fft/real_pass_3.o: fft/real_pass_3.c
+fft/real_pass_4.o: fft/real_pass_4.c
+fft/real_pass_5.o: fft/real_pass_5.c
+fft/real_pass_n.o: fft/real_pass_n.c
+fft/real_radix2.o: fft/real_radix2.c
+fft/real_unpack.o: fft/real_unpack.c
+fft/signals.o: fft/signals.c
+fft/signals_source.o: fft/signals_source.c
+fft/test.o: fft/test.c
+fft/test_complex_source.o: fft/test_complex_source.c
+fft/test_real_source.o: fft/test_real_source.c
+fft/test_trap_source.o: fft/test_trap_source.c
+fft/urand.o: fft/urand.c
+fit/linear.o: fit/linear.c
+fit/test.o: fit/test.c
+gsl-histogram.o: gsl-histogram.c
+gsl-randist.o: gsl-randist.c
+histogram/add.o: histogram/add.c
+histogram/add2d.o: histogram/add2d.c
+histogram/calloc_range.o: histogram/calloc_range.c
+histogram/calloc_range2d.o: histogram/calloc_range2d.c
+histogram/copy.o: histogram/copy.c
+histogram/copy2d.o: histogram/copy2d.c
+histogram/file.o: histogram/file.c
+histogram/file2d.o: histogram/file2d.c
+histogram/find.o: histogram/find.c
+histogram/find2d.o: histogram/find2d.c
+histogram/get.o: histogram/get.c
+histogram/get2d.o: histogram/get2d.c
+histogram/init.o: histogram/init.c
+histogram/init2d.o: histogram/init2d.c
+histogram/maxval.o: histogram/maxval.c
+histogram/maxval2d.o: histogram/maxval2d.c
+histogram/oper.o: histogram/oper.c
+histogram/oper2d.o: histogram/oper2d.c
+histogram/params.o: histogram/params.c
+histogram/params2d.o: histogram/params2d.c
+histogram/pdf.o: histogram/pdf.c
+histogram/pdf2d.o: histogram/pdf2d.c
+histogram/reset.o: histogram/reset.c
+histogram/reset2d.o: histogram/reset2d.c
+histogram/stat.o: histogram/stat.c
+histogram/stat2d.o: histogram/stat2d.c
+histogram/test.o: histogram/test.c
+histogram/test1d.o: histogram/test1d.c
+histogram/test1d_resample.o: histogram/test1d_resample.c
+histogram/test1d_trap.o: histogram/test1d_trap.c
+histogram/test2d.o: histogram/test2d.c
+histogram/test2d_resample.o: histogram/test2d_resample.c
+histogram/test2d_trap.o: histogram/test2d_trap.c
+histogram/urand.o: histogram/urand.c
+ieee-utils/endian.o: ieee-utils/endian.c
+ieee-utils/env.o: ieee-utils/env.c
+ieee-utils/fp-aix.o: ieee-utils/fp-aix.c
+ieee-utils/fp-darwin.o: ieee-utils/fp-darwin.c
+ieee-utils/fp-darwin86.o: ieee-utils/fp-darwin86.c
+ieee-utils/fp-freebsd.o: ieee-utils/fp-freebsd.c
+ieee-utils/fp-gnuc99.o: ieee-utils/fp-gnuc99.c
+ieee-utils/fp-gnum68k.o: ieee-utils/fp-gnum68k.c
+ieee-utils/fp-gnuppc.o: ieee-utils/fp-gnuppc.c
+ieee-utils/fp-gnusparc.o: ieee-utils/fp-gnusparc.c
+ieee-utils/fp-gnux86.o: ieee-utils/fp-gnux86.c
+ieee-utils/fp-hpux.o: ieee-utils/fp-hpux.c
+ieee-utils/fp-hpux11.o: ieee-utils/fp-hpux11.c
+ieee-utils/fp-irix.o: ieee-utils/fp-irix.c
+ieee-utils/fp-netbsd.o: ieee-utils/fp-netbsd.c
+ieee-utils/fp-openbsd.o: ieee-utils/fp-openbsd.c
+ieee-utils/fp-os2emx.o: ieee-utils/fp-os2emx.c
+ieee-utils/fp-solaris.o: ieee-utils/fp-solaris.c
+ieee-utils/fp-sunos4.o: ieee-utils/fp-sunos4.c
+ieee-utils/fp-tru64.o: ieee-utils/fp-tru64.c
+ieee-utils/fp-unknown.o: ieee-utils/fp-unknown.c
+ieee-utils/fp.o: ieee-utils/fp.c
+ieee-utils/make_rep.o: ieee-utils/make_rep.c
+ieee-utils/print.o: ieee-utils/print.c
+ieee-utils/read.o: ieee-utils/read.c
+ieee-utils/standardize.o: ieee-utils/standardize.c
+ieee-utils/test.o: ieee-utils/test.c
+integration/append.o: integration/append.c
+integration/cquad.o: integration/cquad.c
+integration/cquad_const.o: integration/cquad_const.c
+integration/err.o: integration/err.c
+integration/glfixed.o: integration/glfixed.c
+integration/initialise.o: integration/initialise.c
+integration/positivity.o: integration/positivity.c
+integration/ptsort.o: integration/ptsort.c
+integration/qag.o: integration/qag.c
+integration/qagp.o: integration/qagp.c
+integration/qags.o: integration/qags.c
+integration/qawc.o: integration/qawc.c
+integration/qawf.o: integration/qawf.c
+integration/qawo.o: integration/qawo.c
+integration/qaws.o: integration/qaws.c
+integration/qc25c.o: integration/qc25c.c
+integration/qc25f.o: integration/qc25f.c
+integration/qc25s.o: integration/qc25s.c
+integration/qcheb.o: integration/qcheb.c
+integration/qelg.o: integration/qelg.c
+integration/qk.o: integration/qk.c
+integration/qk15.o: integration/qk15.c
+integration/qk21.o: integration/qk21.c
+integration/qk31.o: integration/qk31.c
+integration/qk41.o: integration/qk41.c
+integration/qk51.o: integration/qk51.c
+integration/qk61.o: integration/qk61.c
+integration/qmomo.o: integration/qmomo.c
+integration/qmomof.o: integration/qmomof.c
+integration/qng.o: integration/qng.c
+integration/qpsrt.o: integration/qpsrt.c
+integration/qpsrt2.o: integration/qpsrt2.c
+integration/reset.o: integration/reset.c
+integration/set_initial.o: integration/set_initial.c
+integration/test.o: integration/test.c
+integration/tests.o: integration/tests.c
+integration/util.o: integration/util.c
+integration/workspace.o: integration/workspace.c
+interpolation/accel.o: interpolation/accel.c
+interpolation/akima.o: interpolation/akima.c
+interpolation/cspline.o: interpolation/cspline.c
+interpolation/inline.o: interpolation/inline.c
+interpolation/interp.o: interpolation/interp.c
+interpolation/linear.o: interpolation/linear.c
+interpolation/poly.o: interpolation/poly.c
+interpolation/spline.o: interpolation/spline.c
+interpolation/test.o: interpolation/test.c
+linalg/apply_givens.o: linalg/apply_givens.c
+linalg/balance.o: linalg/balance.c
+linalg/balancemat.o: linalg/balancemat.c
+linalg/bidiag.o: linalg/bidiag.c
+linalg/cholesky.o: linalg/cholesky.c
+linalg/choleskyc.o: linalg/choleskyc.c
+linalg/exponential.o: linalg/exponential.c
+linalg/givens.o: linalg/givens.c
+linalg/hermtd.o: linalg/hermtd.c
+linalg/hessenberg.o: linalg/hessenberg.c
+linalg/hesstri.o: linalg/hesstri.c
+linalg/hh.o: linalg/hh.c
+linalg/householder.o: linalg/householder.c
+linalg/householdercomplex.o: linalg/householdercomplex.c
+linalg/lq.o: linalg/lq.c
+linalg/lu.o: linalg/lu.c
+linalg/luc.o: linalg/luc.c
+linalg/multiply.o: linalg/multiply.c
+linalg/ptlq.o: linalg/ptlq.c
+linalg/qr.o: linalg/qr.c
+linalg/qrpt.o: linalg/qrpt.c
+linalg/svd.o: linalg/svd.c
+linalg/svdstep.o: linalg/svdstep.c
+linalg/symmtd.o: linalg/symmtd.c
+linalg/test.o: linalg/test.c
+linalg/tridiag.o: linalg/tridiag.c
+matrix/copy.o: matrix/copy.c
+matrix/copy_source.o: matrix/copy_source.c
+matrix/file.o: matrix/file.c
+matrix/file_source.o: matrix/file_source.c
+matrix/getset.o: matrix/getset.c
+matrix/getset_source.o: matrix/getset_source.c
+matrix/init.o: matrix/init.c
+matrix/init_source.o: matrix/init_source.c
+matrix/matrix.o: matrix/matrix.c
+matrix/minmax.o: matrix/minmax.c
+matrix/minmax_source.o: matrix/minmax_source.c
+matrix/oper.o: matrix/oper.c
+matrix/oper_complex_source.o: matrix/oper_complex_source.c
+matrix/oper_source.o: matrix/oper_source.c
+matrix/prop.o: matrix/prop.c
+matrix/prop_source.o: matrix/prop_source.c
+matrix/rowcol.o: matrix/rowcol.c
+matrix/rowcol_source.o: matrix/rowcol_source.c
+matrix/submatrix.o: matrix/submatrix.c
+matrix/submatrix_source.o: matrix/submatrix_source.c
+matrix/swap.o: matrix/swap.c
+matrix/swap_source.o: matrix/swap_source.c
+matrix/test.o: matrix/test.c
+matrix/test_complex_source.o: matrix/test_complex_source.c
+matrix/test_source.o: matrix/test_source.c
+matrix/test_static.o: matrix/test_static.c
+matrix/view.o: matrix/view.c
+matrix/view_source.o: matrix/view_source.c
+min/bracketing.o: min/bracketing.c
+min/brent.o: min/brent.c
+min/convergence.o: min/convergence.c
+min/fsolver.o: min/fsolver.c
+min/golden.o: min/golden.c
+min/quad_golden.o: min/quad_golden.c
+min/test.o: min/test.c
+min/test_funcs.o: min/test_funcs.c
+monte/miser.o: monte/miser.c
+monte/plain.o: monte/plain.c
+monte/test.o: monte/test.c
+monte/test_main.o: monte/test_main.c
+monte/vegas.o: monte/vegas.c
+multifit/convergence.o: multifit/convergence.c
+multifit/covar.o: multifit/covar.c
+multifit/fdfsolver.o: multifit/fdfsolver.c
+multifit/fdjac.o: multifit/fdjac.c
+multifit/fsolver.o: multifit/fsolver.c
+multifit/gradient.o: multifit/gradient.c
+multifit/lmder.o: multifit/lmder.c
+multifit/lmiterate.o: multifit/lmiterate.c
+multifit/lmpar.o: multifit/lmpar.c
+multifit/lmset.o: multifit/lmset.c
+multifit/lmutil.o: multifit/lmutil.c
+multifit/multilinear.o: multifit/multilinear.c
+multifit/multirobust.o: multifit/multirobust.c
+multifit/qrsolv.o: multifit/qrsolv.c
+multifit/robust_wfun.o: multifit/robust_wfun.c
+multifit/test.o: multifit/test.c
+multifit/test_brown.o: multifit/test_brown.c
+multifit/test_enso.o: multifit/test_enso.c
+multifit/test_estimator.o: multifit/test_estimator.c
+multifit/test_filip.o: multifit/test_filip.c
+multifit/test_fn.o: multifit/test_fn.c
+multifit/test_hahn1.o: multifit/test_hahn1.c
+multifit/test_kirby2.o: multifit/test_kirby2.c
+multifit/test_longley.o: multifit/test_longley.c
+multifit/test_nelson.o: multifit/test_nelson.c
+multifit/test_pontius.o: multifit/test_pontius.c
+multifit/work.o: multifit/work.c
+multimin/conjugate_fr.o: multimin/conjugate_fr.c
+multimin/conjugate_pr.o: multimin/conjugate_pr.c
+multimin/convergence.o: multimin/convergence.c
+multimin/diff.o: multimin/diff.c
+multimin/directional_minimize.o: multimin/directional_minimize.c
+multimin/fdfminimizer.o: multimin/fdfminimizer.c
+multimin/fminimizer.o: multimin/fminimizer.c
+multimin/linear_minimize.o: multimin/linear_minimize.c
+multimin/linear_wrapper.o: multimin/linear_wrapper.c
+multimin/simplex.o: multimin/simplex.c
+multimin/simplex2.o: multimin/simplex2.c
+multimin/steepest_descent.o: multimin/steepest_descent.c
+multimin/test.o: multimin/test.c
+multimin/test_funcs.o: multimin/test_funcs.c
+multimin/vector_bfgs.o: multimin/vector_bfgs.c
+multimin/vector_bfgs2.o: multimin/vector_bfgs2.c
+multiroots/broyden.o: multiroots/broyden.c
+multiroots/convergence.o: multiroots/convergence.c
+multiroots/dnewton.o: multiroots/dnewton.c
+multiroots/dogleg.o: multiroots/dogleg.c
+multiroots/enorm.o: multiroots/enorm.c
+multiroots/fdfsolver.o: multiroots/fdfsolver.c
+multiroots/fdjac.o: multiroots/fdjac.c
+multiroots/fsolver.o: multiroots/fsolver.c
+multiroots/gnewton.o: multiroots/gnewton.c
+multiroots/hybrid.o: multiroots/hybrid.c
+multiroots/hybridj.o: multiroots/hybridj.c
+multiroots/newton.o: multiroots/newton.c
+multiroots/test.o: multiroots/test.c
+multiroots/test_funcs.o: multiroots/test_funcs.c
+multiset/file.o: multiset/file.c
+multiset/init.o: multiset/init.c
+multiset/inline.o: multiset/inline.c
+multiset/multiset.o: multiset/multiset.c
+multiset/test.o: multiset/test.c
+ntuple/ntuple.o: ntuple/ntuple.c
+ntuple/test.o: ntuple/test.c
+ode-initval/bsimp.o: ode-initval/bsimp.c
+ode-initval/control.o: ode-initval/control.c
+ode-initval/cscal.o: ode-initval/cscal.c
+ode-initval/cstd.o: ode-initval/cstd.c
+ode-initval/evolve.o: ode-initval/evolve.c
+ode-initval/gear1.o: ode-initval/gear1.c
+ode-initval/gear2.o: ode-initval/gear2.c
+ode-initval/rk2.o: ode-initval/rk2.c
+ode-initval/rk2imp.o: ode-initval/rk2imp.c
+ode-initval/rk2simp.o: ode-initval/rk2simp.c
+ode-initval/rk4.o: ode-initval/rk4.c
+ode-initval/rk4imp.o: ode-initval/rk4imp.c
+ode-initval/rk8pd.o: ode-initval/rk8pd.c
+ode-initval/rkck.o: ode-initval/rkck.c
+ode-initval/rkf45.o: ode-initval/rkf45.c
+ode-initval/step.o: ode-initval/step.c
+ode-initval/test.o: ode-initval/test.c
+ode-initval2/bsimp.o: ode-initval2/bsimp.c
+ode-initval2/control.o: ode-initval2/control.c
+ode-initval2/control_utils.o: ode-initval2/control_utils.c
+ode-initval2/cscal.o: ode-initval2/cscal.c
+ode-initval2/cstd.o: ode-initval2/cstd.c
+ode-initval2/driver.o: ode-initval2/driver.c
+ode-initval2/evolve.o: ode-initval2/evolve.c
+ode-initval2/modnewton1.o: ode-initval2/modnewton1.c
+ode-initval2/msadams.o: ode-initval2/msadams.c
+ode-initval2/msbdf.o: ode-initval2/msbdf.c
+ode-initval2/rk1imp.o: ode-initval2/rk1imp.c
+ode-initval2/rk2.o: ode-initval2/rk2.c
+ode-initval2/rk2imp.o: ode-initval2/rk2imp.c
+ode-initval2/rk4.o: ode-initval2/rk4.c
+ode-initval2/rk4imp.o: ode-initval2/rk4imp.c
+ode-initval2/rk8pd.o: ode-initval2/rk8pd.c
+ode-initval2/rkck.o: ode-initval2/rkck.c
+ode-initval2/rkf45.o: ode-initval2/rkf45.c
+ode-initval2/rksubs.o: ode-initval2/rksubs.c
+ode-initval2/step.o: ode-initval2/step.c
+ode-initval2/step_utils.o: ode-initval2/step_utils.c
+ode-initval2/test.o: ode-initval2/test.c
+permutation/canonical.o: permutation/canonical.c
+permutation/file.o: permutation/file.c
+permutation/init.o: permutation/init.c
+permutation/inline.o: permutation/inline.c
+permutation/permutation.o: permutation/permutation.c
+permutation/permute.o: permutation/permute.c
+permutation/permute_source.o: permutation/permute_source.c
+permutation/test.o: permutation/test.c
+poly/balance.o: poly/balance.c
+poly/companion.o: poly/companion.c
+poly/dd.o: poly/dd.c
+poly/deriv.o: poly/deriv.c
+poly/eval.o: poly/eval.c
+poly/qr.o: poly/qr.c
+poly/solve_cubic.o: poly/solve_cubic.c
+poly/solve_quadratic.o: poly/solve_quadratic.c
+poly/test.o: poly/test.c
+poly/zsolve.o: poly/zsolve.c
+poly/zsolve_cubic.o: poly/zsolve_cubic.c
+poly/zsolve_init.o: poly/zsolve_init.c
+poly/zsolve_quadratic.o: poly/zsolve_quadratic.c
+qrng/halton.o: qrng/halton.c
+qrng/inline.o: qrng/inline.c
+qrng/niederreiter-2.o: qrng/niederreiter-2.c
+qrng/qrng.o: qrng/qrng.c
+qrng/reversehalton.o: qrng/reversehalton.c
+qrng/sobol.o: qrng/sobol.c
+qrng/test.o: qrng/test.c
+randist/bernoulli.o: randist/bernoulli.c
+randist/beta.o: randist/beta.c
+randist/bigauss.o: randist/bigauss.c
+randist/binomial.o: randist/binomial.c
+randist/binomial_tpe.o: randist/binomial_tpe.c
+randist/cauchy.o: randist/cauchy.c
+randist/chisq.o: randist/chisq.c
+randist/dirichlet.o: randist/dirichlet.c
+randist/discrete.o: randist/discrete.c
+randist/erlang.o: randist/erlang.c
+randist/exponential.o: randist/exponential.c
+randist/exppow.o: randist/exppow.c
+randist/fdist.o: randist/fdist.c
+randist/flat.o: randist/flat.c
+randist/gamma.o: randist/gamma.c
+randist/gauss.o: randist/gauss.c
+randist/gausstail.o: randist/gausstail.c
+randist/gausszig.o: randist/gausszig.c
+randist/geometric.o: randist/geometric.c
+randist/gumbel.o: randist/gumbel.c
+randist/hyperg.o: randist/hyperg.c
+randist/landau.o: randist/landau.c
+randist/laplace.o: randist/laplace.c
+randist/levy.o: randist/levy.c
+randist/logarithmic.o: randist/logarithmic.c
+randist/logistic.o: randist/logistic.c
+randist/lognormal.o: randist/lognormal.c
+randist/multinomial.o: randist/multinomial.c
+randist/nbinomial.o: randist/nbinomial.c
+randist/pareto.o: randist/pareto.c
+randist/pascal.o: randist/pascal.c
+randist/poisson.o: randist/poisson.c
+randist/rayleigh.o: randist/rayleigh.c
+randist/shuffle.o: randist/shuffle.c
+randist/sphere.o: randist/sphere.c
+randist/tdist.o: randist/tdist.c
+randist/test.o: randist/test.c
+randist/weibull.o: randist/weibull.c
+rng/borosh13.o: rng/borosh13.c
+rng/cmrg.o: rng/cmrg.c
+rng/coveyou.o: rng/coveyou.c
+rng/default.o: rng/default.c
+rng/file.o: rng/file.c
+rng/fishman18.o: rng/fishman18.c
+rng/fishman20.o: rng/fishman20.c
+rng/fishman2x.o: rng/fishman2x.c
+rng/gfsr4.o: rng/gfsr4.c
+rng/inline.o: rng/inline.c
+rng/knuthran.o: rng/knuthran.c
+rng/knuthran2.o: rng/knuthran2.c
+rng/knuthran2002.o: rng/knuthran2002.c
+rng/lecuyer21.o: rng/lecuyer21.c
+rng/minstd.o: rng/minstd.c
+rng/mrg.o: rng/mrg.c
+rng/mt.o: rng/mt.c
+rng/r250.o: rng/r250.c
+rng/ran0.o: rng/ran0.c
+rng/ran1.o: rng/ran1.c
+rng/ran2.o: rng/ran2.c
+rng/ran3.o: rng/ran3.c
+rng/rand.o: rng/rand.c
+rng/rand48.o: rng/rand48.c
+rng/random.o: rng/random.c
+rng/randu.o: rng/randu.c
+rng/ranf.o: rng/ranf.c
+rng/ranlux.o: rng/ranlux.c
+rng/ranlxd.o: rng/ranlxd.c
+rng/ranlxs.o: rng/ranlxs.c
+rng/ranmar.o: rng/ranmar.c
+rng/rng.o: rng/rng.c
+rng/schrage.o: rng/schrage.c
+rng/slatec.o: rng/slatec.c
+rng/taus.o: rng/taus.c
+rng/taus113.o: rng/taus113.c
+rng/test.o: rng/test.c
+rng/transputer.o: rng/transputer.c
+rng/tt.o: rng/tt.c
+rng/types.o: rng/types.c
+rng/uni.o: rng/uni.c
+rng/uni32.o: rng/uni32.c
+rng/vax.o: rng/vax.c
+rng/waterman14.o: rng/waterman14.c
+rng/zuf.o: rng/zuf.c
+roots/bisection.o: roots/bisection.c
+roots/brent.o: roots/brent.c
+roots/convergence.o: roots/convergence.c
+roots/falsepos.o: roots/falsepos.c
+roots/fdfsolver.o: roots/fdfsolver.c
+roots/fsolver.o: roots/fsolver.c
+roots/newton.o: roots/newton.c
+roots/secant.o: roots/secant.c
+roots/steffenson.o: roots/steffenson.c
+roots/test.o: roots/test.c
+roots/test_funcs.o: roots/test_funcs.c
+siman/siman.o: siman/siman.c
+siman/siman_tsp.o: siman/siman_tsp.c
+siman/test.o: siman/test.c
+sort/sort.o: sort/sort.c
+sort/sortind.o: sort/sortind.c
+sort/sortvec.o: sort/sortvec.c
+sort/sortvecind.o: sort/sortvecind.c
+sort/sortvecind_source.o: sort/sortvecind_source.c
+sort/sortvec_source.o: sort/sortvec_source.c
+sort/subset.o: sort/subset.c
+sort/subsetind.o: sort/subsetind.c
+sort/subsetind_source.o: sort/subsetind_source.c
+sort/subset_source.o: sort/subset_source.c
+sort/test.o: sort/test.c
+sort/test_heapsort.o: sort/test_heapsort.c
+sort/test_source.o: sort/test_source.c
+specfunc/airy.o: specfunc/airy.c
+specfunc/airy_der.o: specfunc/airy_der.c
+specfunc/airy_zero.o: specfunc/airy_zero.c
+specfunc/atanint.o: specfunc/atanint.c
+specfunc/bessel.o: specfunc/bessel.c
+specfunc/bessel_amp_phase.o: specfunc/bessel_amp_phase.c
+specfunc/bessel_i.o: specfunc/bessel_i.c
+specfunc/bessel_I0.o: specfunc/bessel_I0.c
+specfunc/bessel_I1.o: specfunc/bessel_I1.c
+specfunc/bessel_In.o: specfunc/bessel_In.c
+specfunc/bessel_Inu.o: specfunc/bessel_Inu.c
+specfunc/bessel_j.o: specfunc/bessel_j.c
+specfunc/bessel_J0.o: specfunc/bessel_J0.c
+specfunc/bessel_J1.o: specfunc/bessel_J1.c
+specfunc/bessel_Jn.o: specfunc/bessel_Jn.c
+specfunc/bessel_Jnu.o: specfunc/bessel_Jnu.c
+specfunc/bessel_k.o: specfunc/bessel_k.c
+specfunc/bessel_K0.o: specfunc/bessel_K0.c
+specfunc/bessel_K1.o: specfunc/bessel_K1.c
+specfunc/bessel_Kn.o: specfunc/bessel_Kn.c
+specfunc/bessel_Knu.o: specfunc/bessel_Knu.c
+specfunc/bessel_olver.o: specfunc/bessel_olver.c
+specfunc/bessel_sequence.o: specfunc/bessel_sequence.c
+specfunc/bessel_temme.o: specfunc/bessel_temme.c
+specfunc/bessel_y.o: specfunc/bessel_y.c
+specfunc/bessel_Y0.o: specfunc/bessel_Y0.c
+specfunc/bessel_Y1.o: specfunc/bessel_Y1.c
+specfunc/bessel_Yn.o: specfunc/bessel_Yn.c
+specfunc/bessel_Ynu.o: specfunc/bessel_Ynu.c
+specfunc/bessel_zero.o: specfunc/bessel_zero.c
+specfunc/beta.o: specfunc/beta.c
+specfunc/beta_inc.o: specfunc/beta_inc.c
+specfunc/cheb_eval.o: specfunc/cheb_eval.c
+specfunc/cheb_eval_mode.o: specfunc/cheb_eval_mode.c
+specfunc/clausen.o: specfunc/clausen.c
+specfunc/coulomb.o: specfunc/coulomb.c
+specfunc/coulomb_bound.o: specfunc/coulomb_bound.c
+specfunc/coupling.o: specfunc/coupling.c
+specfunc/dawson.o: specfunc/dawson.c
+specfunc/debye.o: specfunc/debye.c
+specfunc/dilog.o: specfunc/dilog.c
+specfunc/elementary.o: specfunc/elementary.c
+specfunc/ellint.o: specfunc/ellint.c
+specfunc/elljac.o: specfunc/elljac.c
+specfunc/erfc.o: specfunc/erfc.c
+specfunc/exp.o: specfunc/exp.c
+specfunc/expint.o: specfunc/expint.c
+specfunc/expint3.o: specfunc/expint3.c
+specfunc/fermi_dirac.o: specfunc/fermi_dirac.c
+specfunc/gamma.o: specfunc/gamma.c
+specfunc/gamma_inc.o: specfunc/gamma_inc.c
+specfunc/gegenbauer.o: specfunc/gegenbauer.c
+specfunc/hyperg.o: specfunc/hyperg.c
+specfunc/hyperg_0F1.o: specfunc/hyperg_0F1.c
+specfunc/hyperg_1F1.o: specfunc/hyperg_1F1.c
+specfunc/hyperg_2F0.o: specfunc/hyperg_2F0.c
+specfunc/hyperg_2F1.o: specfunc/hyperg_2F1.c
+specfunc/hyperg_U.o: specfunc/hyperg_U.c
+specfunc/laguerre.o: specfunc/laguerre.c
+specfunc/lambert.o: specfunc/lambert.c
+specfunc/legendre_con.o: specfunc/legendre_con.c
+specfunc/legendre_H3d.o: specfunc/legendre_H3d.c
+specfunc/legendre_poly.o: specfunc/legendre_poly.c
+specfunc/legendre_Qn.o: specfunc/legendre_Qn.c
+specfunc/log.o: specfunc/log.c
+specfunc/mathieu_angfunc.o: specfunc/mathieu_angfunc.c
+specfunc/mathieu_charv.o: specfunc/mathieu_charv.c
+specfunc/mathieu_coeff.o: specfunc/mathieu_coeff.c
+specfunc/mathieu_radfunc.o: specfunc/mathieu_radfunc.c
+specfunc/mathieu_workspace.o: specfunc/mathieu_workspace.c
+specfunc/poch.o: specfunc/poch.c
+specfunc/pow_int.o: specfunc/pow_int.c
+specfunc/psi.o: specfunc/psi.c
+specfunc/result.o: specfunc/result.c
+specfunc/shint.o: specfunc/shint.c
+specfunc/sinint.o: specfunc/sinint.c
+specfunc/synchrotron.o: specfunc/synchrotron.c
+specfunc/test_airy.o: specfunc/test_airy.c
+specfunc/test_bessel.o: specfunc/test_bessel.c
+specfunc/test_coulomb.o: specfunc/test_coulomb.c
+specfunc/test_dilog.o: specfunc/test_dilog.c
+specfunc/test_gamma.o: specfunc/test_gamma.c
+specfunc/test_hyperg.o: specfunc/test_hyperg.c
+specfunc/test_legendre.o: specfunc/test_legendre.c
+specfunc/test_mathieu.o: specfunc/test_mathieu.c
+specfunc/test_sf.o: specfunc/test_sf.c
+specfunc/transport.o: specfunc/transport.c
+specfunc/trig.o: specfunc/trig.c
+specfunc/zeta.o: specfunc/zeta.c
+statistics/absdev.o: statistics/absdev.c
+statistics/absdev_source.o: statistics/absdev_source.c
+statistics/covariance.o: statistics/covariance.c
+statistics/covariance_source.o: statistics/covariance_source.c
+statistics/kurtosis.o: statistics/kurtosis.c
+statistics/kurtosis_source.o: statistics/kurtosis_source.c
+statistics/lag1.o: statistics/lag1.c
+statistics/lag1_source.o: statistics/lag1_source.c
+statistics/mean.o: statistics/mean.c
+statistics/mean_source.o: statistics/mean_source.c
+statistics/median.o: statistics/median.c
+statistics/median_source.o: statistics/median_source.c
+statistics/minmax.o: statistics/minmax.c
+statistics/minmax_source.o: statistics/minmax_source.c
+statistics/p_variance.o: statistics/p_variance.c
+statistics/p_variance_source.o: statistics/p_variance_source.c
+statistics/quantiles.o: statistics/quantiles.c
+statistics/quantiles_source.o: statistics/quantiles_source.c
+statistics/skew.o: statistics/skew.c
+statistics/skew_source.o: statistics/skew_source.c
+statistics/test.o: statistics/test.c
+statistics/test_float_source.o: statistics/test_float_source.c
+statistics/test_int_source.o: statistics/test_int_source.c
+statistics/test_nist.o: statistics/test_nist.c
+statistics/ttest.o: statistics/ttest.c
+statistics/ttest_source.o: statistics/ttest_source.c
+statistics/variance.o: statistics/variance.c
+statistics/variance_source.o: statistics/variance_source.c
+statistics/wabsdev.o: statistics/wabsdev.c
+statistics/wabsdev_source.o: statistics/wabsdev_source.c
+statistics/wkurtosis.o: statistics/wkurtosis.c
+statistics/wkurtosis_source.o: statistics/wkurtosis_source.c
+statistics/wmean.o: statistics/wmean.c
+statistics/wmean_source.o: statistics/wmean_source.c
+statistics/wskew.o: statistics/wskew.c
+statistics/wskew_source.o: statistics/wskew_source.c
+statistics/wvariance.o: statistics/wvariance.c
+statistics/wvariance_source.o: statistics/wvariance_source.c
+sum/levin_u.o: sum/levin_u.c
+sum/levin_utrunc.o: sum/levin_utrunc.c
+sum/test.o: sum/test.c
+sum/work_u.o: sum/work_u.c
+sum/work_utrunc.o: sum/work_utrunc.c
+sys/coerce.o: sys/coerce.c
+sys/expm1.o: sys/expm1.c
+sys/fcmp.o: sys/fcmp.c
+sys/fdiv.o: sys/fdiv.c
+sys/hypot.o: sys/hypot.c
+sys/infnan.o: sys/infnan.c
+sys/invhyp.o: sys/invhyp.c
+sys/ldfrexp.o: sys/ldfrexp.c
+sys/log1p.o: sys/log1p.c
+sys/minmax.o: sys/minmax.c
+sys/pow_int.o: sys/pow_int.c
+sys/prec.o: sys/prec.c
+sys/test.o: sys/test.c
+test/results.o: test/results.c
+utils/memcpy.o: utils/memcpy.c
+utils/memmove.o: utils/memmove.c
+utils/placeholder.o: utils/placeholder.c
+utils/strdup.o: utils/strdup.c
+utils/strtol.o: utils/strtol.c
+utils/strtoul.o: utils/strtoul.c
+vector/copy.o: vector/copy.c
+vector/copy_source.o: vector/copy_source.c
+vector/file.o: vector/file.c
+vector/file_source.o: vector/file_source.c
+vector/init.o: vector/init.c
+vector/init_source.o: vector/init_source.c
+vector/minmax.o: vector/minmax.c
+vector/minmax_source.o: vector/minmax_source.c
+vector/oper.o: vector/oper.c
+vector/oper_complex_source.o: vector/oper_complex_source.c
+vector/oper_source.o: vector/oper_source.c
+vector/prop.o: vector/prop.c
+vector/prop_source.o: vector/prop_source.c
+vector/reim.o: vector/reim.c
+vector/reim_source.o: vector/reim_source.c
+vector/subvector.o: vector/subvector.c
+vector/subvector_source.o: vector/subvector_source.c
+vector/swap.o: vector/swap.c
+vector/swap_source.o: vector/swap_source.c
+vector/test.o: vector/test.c
+vector/test_complex_source.o: vector/test_complex_source.c
+vector/test_source.o: vector/test_source.c
+vector/test_static.o: vector/test_static.c
+vector/vector.o: vector/vector.c
+vector/view.o: vector/view.c
+vector/view_source.o: vector/view_source.c
+version.o: version.c
+wavelet/bspline.o: wavelet/bspline.c
+wavelet/daubechies.o: wavelet/daubechies.c
+wavelet/dwt.o: wavelet/dwt.c
+wavelet/haar.o: wavelet/haar.c
+wavelet/test.o: wavelet/test.c
+wavelet/wavelet.o: wavelet/wavelet.c

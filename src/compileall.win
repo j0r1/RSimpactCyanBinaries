@@ -1,0 +1,56 @@
+#!/bin/bash
+
+PREF=simpact-cyan-0.21.0
+CXX="g++"
+
+mkdir ../exec/
+mkdir ../inst/
+mkdir ../inst/simpact/ 
+mkdir local
+
+cp -r $PREF/data ../inst/simpact/
+cp -r $PREF/python ../inst/simpact/
+
+OPENMPFLAGS="-fopenmp"
+echo "OPENMPFLAGS=$OPENMPFLAGS"
+
+cd gsl-1.16/ && make -f Makefile.win && cd ..
+LIBGSL=`cd gsl-1.16/ ; find "../gsl-1.16/" -name libgslpart.a`
+LIBGSLCBLAS=""
+
+echo "Building TIFF"
+cd tiff-4.0.6/libtiff/ && make -f Makefile.win && cd ../../
+LIBTIFF=`cd tiff-4.0.6/ ; find "../tiff-4.0.6/" -name libtiffpart.a`
+
+LIBINCLUDES="-I../gsl-1.16/ -I../tiff-4.0.6/libtiff/"
+echo $LIBINCLUDES
+
+SIMPACTVERSION=`echo "$PREF" | cut -f 3 -d "-"`
+GCCVERSION=`gcc --version|head -n 1`
+cat << EOF > $PREF/src/version.h
+#ifndef SIMPACT_CYAN_VERSION_H
+
+#define SIMPACT_CYAN_VERSION_H
+
+#define SIMPACT_CYAN_VERSION    "$SIMPACTVERSION"
+#define SIMPACT_CYAN_COMPILER   "$GCCVERSION"
+
+#endif // SIMPACT_CYAN_VERSION_H
+EOF
+
+DEFINES="-DEVENTBASE_ALWAYS_CHECK_NANTIME -DTIFFVERSION=4 -Doverride= -Dsteady_clock=system_clock -DWIN32 -DM_PI=3.14159265358979323846"
+
+. simpactsourceinfo
+ 
+# Release
+echo "Compiling simpact-cyan-release"
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o ../../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF )
+echo "Compiling maxart-release"
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o ../../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF)
+ 
+# Debug
+echo "Compiling simpact-cyan-debug"
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o ../../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF)
+echo "Compiling maxart-debug"
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o ../../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF)
+

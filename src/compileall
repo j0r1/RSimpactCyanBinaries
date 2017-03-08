@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set
+
 PREF=simpact-cyan-0.21.0
 STARTDIR=`pwd`
 
@@ -35,25 +37,34 @@ echo "OPENMPFLAGS=$OPENMPFLAGS"
 sleep 1
 
 echo "Building GSL"
-(
-cd gsl-1.16/ ; 
-CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" 
+if [ "$OS" != "Windows_NT" ] ; then
+	(
+	cd gsl-1.16/ ; 
+	CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" 
 
-# Documentation does not need to be built or installed, disable this to avoid errors at this point
-cat << EOF > doc/Makefile
-all:
+	# Documentation does not need to be built or installed, disable this to avoid errors at this point
+	cat << EOF > doc/Makefile
+	all:
 
-install:
+	install:
 
-EOF
+	EOF
 
-make && make install) #>/dev/null
+	make && make install) #>/dev/null
+	LIBGSL=`find "$STARTDIR/local/" -name libgsl.a`
+	LIBGSLCBLAS=`find "$STARTDIR/local/" -name libgslcblas.a`
+else
+	cd gsl-1.16/ && make -f Makefile.win && cd ..
+	LIBGSL=`find "gsl-1.16/" -name libgslpart.a`
+	LIBGSLCBLAS=""
+fi
+
+exit
 
 echo "Building TIFF"
 (cd tiff-4.0.6/ ; CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" --disable-jpeg --disable-lzma && make && make install) #>/dev/null
 
-LIBGSL=`find "$STARTDIR/local/" -name libgsl.a`
-LIBGSLCBLAS=`find "$STARTDIR/local/" -name libgslcblas.a`
+
 LIBTIFF=`find "$STARTDIR/local/" -name libtiff.a`
 LIBINCLUDES="-I$STARTDIR/local/include"
 
