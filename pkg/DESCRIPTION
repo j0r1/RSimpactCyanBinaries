@@ -1,8 +1,10 @@
 Package: RSimpactCyanBinaries
-Version: 0.0-1
-Date: 2017-03-06
+Version: 0.21-1
+Date: 2017-03-08
 Title: Compile Simpact Cyan binaries through R
 Author: Jori Liesenborgs
 Maintainer: Jori Liesenborgs <jori.liesenborgs@uhasselt.be>
 Description: TODO
+  Includes source code from the GNU Scientific Library and
+  libtiff.
 License: GPL-2
