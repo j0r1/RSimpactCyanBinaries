@@ -3,6 +3,10 @@
 PREF=simpact-cyan-0.21.0
 STARTDIR=`pwd`
 
+if [ -z "$CXX" ] ; then
+	CXX="g++"
+fi
+
 mkdir ../exec/
 mkdir ../inst/
 mkdir ../inst/simpact/ 
@@ -11,12 +15,24 @@ mkdir local
 cp -r $PREF/data ../inst/simpact/
 cp -r $PREF/python ../inst/simpact/
 
-#cat << EOF >hello.c
-#int main(void) { printf("Hello!\n"); return 0; }
-#EOF
-#gcc -o ../exec/hello hello.c
-#
-#exit 0
+# Test OpenMP support
+echo "Testing compiler's OpenMP support"
+cat << EOF >test0.cpp
+#include <omp.h>
+
+int main(void) 
+{ 
+	return 0; 
+}
+EOF
+if ! $CXX -o test0 test0.cpp -fopenmp ; then
+	OPENMPFLAGS="-DDISABLEOPENMP"
+else
+	OPENMPFLAGS="-fopenmp"
+fi
+
+echo "OPENMPFLAGS=$OPENMPFLAGS"
+sleep 5
 
 echo "Building GSL"
 (
@@ -168,19 +184,15 @@ EOF
 
 DEFINES="-DEVENTBASE_ALWAYS_CHECK_NANTIME -DTIFFVERSION=4"
 
-if [ -z "$CXX" ] ; then
-	CXX="g++"
-fi
-
 # Release
 echo "Compiling simpact-cyan-release"
-$CXX -std=c++11 -fopenmp -DNDEBUG -O2 -o ../exec/simpact-cyan-release $DEFINES $INCLUDES $COMMONSRC $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
+$CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o ../exec/simpact-cyan-release $DEFINES $INCLUDES $COMMONSRC $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
 echo "Compiling maxart-release"
-$CXX -std=c++11 -fopenmp -DNDEBUG -O2 -o ../exec/maxart-release $DEFINES $INCLUDES $COMMONSRC $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
+$CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o ../exec/maxart-release $DEFINES $INCLUDES $COMMONSRC $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
 
 # Debug
 echo "Compiling simpact-cyan-debug"
-$CXX -std=c++11 -fopenmp -g -o ../exec/simpact-cyan-debug $DEFINES $INCLUDES $COMMONSRC $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
+$CXX -std=c++11 $OPENMPFLAGS -g -o ../exec/simpact-cyan-debug $DEFINES $INCLUDES $COMMONSRC $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
 echo "Compiling maxart-debug"
-$CXX -std=c++11 -fopenmp -g -o ../exec/maxart-debug $DEFINES $INCLUDES $COMMONSRC $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
+$CXX -std=c++11 $OPENMPFLAGS -g -o ../exec/maxart-debug $DEFINES $INCLUDES $COMMONSRC $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz
 
