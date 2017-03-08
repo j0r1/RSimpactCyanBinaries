@@ -1,0 +1,113 @@
+INCLUDES="-Isrc/ 
+	 -Isrc/lib 
+	 -Isrc/lib/core 
+         -Isrc/lib/mnrm 
+         -Isrc/lib/util 
+	 -Isrc/lib/util/experimental
+	 -Isrc/program 
+	 -Isrc/program-common "
+
+COMMONSRC="./src/lib/mnrm/booltype.cpp 
+./src/lib/mnrm/algorithm.cpp 
+./src/lib/mnrm/eventbase.cpp 
+./src/lib/mnrm/gslrandomnumbergenerator.cpp 
+./src/lib/mnrm/debugtimer.cpp 
+./src/lib/mnrm/simplealgorithm.cpp 
+./src/lib/core/personaleventlisttesting.cpp 
+./src/lib/core/populationstateadvanced.cpp 
+./src/lib/core/personaleventlist.cpp 
+./src/lib/core/populationutil.cpp 
+./src/lib/core/populationalgorithmsimple.cpp 
+./src/lib/core/populationevent.cpp 
+./src/lib/core/populationstatesimpleadvancedcommon.cpp 
+./src/lib/core/populationstatesimple.cpp 
+./src/lib/core/populationalgorithmadvanced.cpp 
+./src/lib/core/populationalgorithmtesting.cpp 
+./src/lib/core/populationstatetesting.cpp 
+./src/lib/core/personbase.cpp 
+./src/lib/util/populationdistribution.cpp 
+./src/lib/util/piecewiselinearfunction.cpp 
+./src/lib/util/discretedistribution2d.cpp 
+./src/lib/util/hazardfunction.cpp 
+./src/lib/util/populationdistributioncsv.cpp 
+./src/lib/util/jsonconfig.cpp 
+./src/lib/util/normaldistribution.cpp 
+./src/lib/util/configreader.cpp 
+./src/lib/util/discretedistribution.cpp 
+./src/lib/util/tiffdensityfile.cpp 
+./src/lib/util/configwriter.cpp 
+./src/lib/util/csvfile.cpp 
+./src/lib/util/configdistributionhelper.cpp 
+./src/lib/util/logfile.cpp 
+./src/lib/util/binormaldistribution.cpp 
+./src/lib/util/discretedistributionwrapper2d.cpp 
+./src/lib/util/configsettings.cpp 
+./src/lib/util/configfunctions.cpp 
+./src/lib/util/mutex.cpp 
+./src/lib/util/gridvaluescsv.cpp 
+./src/lib/util/util.cpp 
+./src/lib/util/discretedistributionwrapper.cpp 
+./src/lib/util/discretedistributionfast.cpp 
+./src/program-common/eventhivtransmission.cpp 
+./src/program-common/simpactpopulation.cpp 
+./src/program-common/eventhsv2seed.cpp 
+./src/program-common/evthazarddissolution.cpp 
+./src/program-common/person_relations.cpp 
+./src/program-common/eventdiagnosis.cpp 
+./src/program-common/eventformation.cpp 
+./src/program-common/person.cpp 
+./src/program-common/configutil.cpp 
+./src/program-common/hazardfunctionformationsimple.cpp 
+./src/program-common/eventbirth.cpp 
+./src/program-common/eventmortality.cpp 
+./src/program-common/simpactevent.cpp 
+./src/program-common/aidstodutil.cpp 
+./src/program-common/hazardfunctionformationagegap.cpp 
+./src/program-common/main.cpp 
+./src/program-common/eventaidsstage.cpp 
+./src/program-common/vspmodellogdist.cpp 
+./src/program-common/eventdissolution.cpp 
+./src/program-common/eventcheckstopalgorithm.cpp 
+./src/program-common/eventaidsmortality.cpp 
+./src/program-common/eventdebut.cpp 
+./src/program-common/evthazardformationsimple.cpp 
+./src/program-common/eventdropout.cpp 
+./src/program-common/eventrelocation.cpp 
+./src/program-common/eventsyncpopstats.cpp 
+./src/program-common/eventhivseed.cpp 
+./src/program-common/eventchronicstage.cpp 
+./src/program-common/main_hazardtest.cpp 
+./src/program-common/person_hiv.cpp 
+./src/program-common/eventseedbase.cpp 
+./src/program-common/eventmortalitybase.cpp 
+./src/program-common/eventperiodiclogging.cpp 
+./src/program-common/vspmodellogweibullwithnoise.cpp 
+./src/program-common/evthazardformationagegaprefyear.cpp 
+./src/program-common/logsystem.cpp 
+./src/program-common/eventintervention.cpp 
+./src/program-common/configsettingslog.cpp 
+./src/program-common/signalhandlers.cpp 
+./src/program-common/eventconception.cpp 
+./src/program-common/eventsyncrefyear.cpp 
+./src/program-common/person_hsv2.cpp 
+./src/program-common/hazardfunctionformationagegaprefyear.cpp 
+./src/program-common/eventhsv2transmission.cpp 
+./src/program-common/coarsemap.cpp 
+./src/program-common/evthazardformationagegap.cpp "
+
+SIMPACTSRC="$COMMONSRC
+./src/program/personimpl.cpp 
+./src/program-common/eventmonitoring.cpp 
+./src/program/start.cpp "
+
+MAXARTSRC="$COMMONSRC
+./src/program-maxart/personimpl.cpp 
+./src/program-maxart/eventstudystep.cpp 
+./src/program-maxart/facilities.cpp 
+./src/program-maxart/eventmonitoring.cpp 
+./src/program-maxart/eventstudyend.cpp 
+./src/program-maxart/eventstudystart.cpp 
+./src/program-maxart/start.cpp 
+./src/program-maxart/maxartpopulation.cpp "
+
+

@@ -1,0 +1,88 @@
+#!/bin/bash
+
+PREF=simpact-cyan-0.21.0
+STARTDIR=`pwd`
+
+if [ -z "$CXX" ] ; then
+	CXX="g++"
+fi
+
+mkdir ../exec/
+mkdir ../inst/
+mkdir ../inst/simpact/ 
+mkdir local
+
+cp -r $PREF/data ../inst/simpact/
+cp -r $PREF/python ../inst/simpact/
+
+# Test OpenMP support
+echo "Testing compiler's OpenMP support"
+cat << EOF >test0.cpp
+#include <omp.h>
+
+int main(void) 
+{ 
+	return 0; 
+}
+EOF
+if ! $CXX -o test0 test0.cpp -fopenmp ; then
+	OPENMPFLAGS="-DDISABLEOPENMP"
+else
+	OPENMPFLAGS="-fopenmp"
+fi
+
+echo "OPENMPFLAGS=$OPENMPFLAGS"
+sleep 1
+
+echo "Building GSL"
+(
+cd gsl-1.16/ ; 
+CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" 
+
+# Documentation does not need to be built or installed, disable this to avoid errors at this point
+cat << EOF > doc/Makefile
+all:
+
+install:
+
+EOF
+
+make && make install) #>/dev/null
+
+echo "Building TIFF"
+(cd tiff-4.0.6/ ; CFLAGS=-O2 ./configure --prefix="$STARTDIR/local" --disable-jpeg --disable-lzma && make && make install) #>/dev/null
+
+LIBGSL=`find "$STARTDIR/local/" -name libgsl.a`
+LIBGSLCBLAS=`find "$STARTDIR/local/" -name libgslcblas.a`
+LIBTIFF=`find "$STARTDIR/local/" -name libtiff.a`
+LIBINCLUDES="-I$STARTDIR/local/include"
+
+SIMPACTVERSION=`echo "$PREF" | cut -f 3 -d "-"`
+GCCVERSION=`gcc --version|head -n 1`
+cat << EOF > $PREF/src/version.h
+#ifndef SIMPACT_CYAN_VERSION_H
+
+#define SIMPACT_CYAN_VERSION_H
+
+#define SIMPACT_CYAN_VERSION    "$SIMPACTVERSION"
+#define SIMPACT_CYAN_COMPILER   "$GCCVERSION"
+
+#endif // SIMPACT_CYAN_VERSION_H
+EOF
+
+DEFINES="-DEVENTBASE_ALWAYS_CHECK_NANTIME -DTIFFVERSION=4"
+
+source simpactsourceinfo
+
+# Release
+echo "Compiling simpact-cyan-release"
+(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+echo "Compiling maxart-release"
+(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+
+# Debug
+echo "Compiling simpact-cyan-debug"
+(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -g -o $STARTDIR/../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+echo "Compiling maxart-debug"
+(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -g -o $STARTDIR/../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+
