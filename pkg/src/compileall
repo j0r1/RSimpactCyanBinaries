@@ -56,7 +56,7 @@ int main(void)
 }
 EOF
 
-if ! gcc -std=c++0x -c -o "overridetest.o" "overridetest.cpp" >/dev/null 2>&1 ; then
+if ! $CXX -std=c++0x -c -o "overridetest.o" "overridetest.cpp" >/dev/null 2>&1 ; then
 	EXTRACXXFLAGS="$EXTRACXXFLAGS -Doverride="
 fi
 
@@ -70,11 +70,24 @@ int main(void)
 }
 EOF
 
-if ! gcc -std=c++0x -c -o "steadyclocktest.o" "steadyclocktest.cpp" >/dev/null 2>&1 ; then
+if ! $CXX -std=c++0x -c -o "steadyclocktest.o" "steadyclocktest.cpp" >/dev/null 2>&1 ; then
 	EXTRACXXFLAGS="$EXTRACXXFLAGS -Dsteady_clock=system_clock"
 fi
 
 echo "EXTRACXXFLAGS=$EXTRACXXFLAGS"
+
+LIBZ=""
+cat << EOF > "libztest.cpp"
+int main(void)
+{
+	return 0;
+}
+EOF
+
+if $CXX -o libztest libztest.cpp -lz >/dev/null 2>&1 ; then
+	LIBZ="-lz"
+fi
+echo "LIBZ=$LIBZ"
 
 echo "Building GSL"
 (
@@ -118,13 +131,13 @@ source simpactsourceinfo
 
 # Release
 echo "Compiling simpact-cyan-release"
-(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF $LIBZ )
 echo "Compiling maxart-release"
-(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF $LIBZ )
 
 # Debug
 echo "Compiling simpact-cyan-debug"
-(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF $LIBZ )
 echo "Compiling maxart-debug"
-(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF $LIBZ )
 
