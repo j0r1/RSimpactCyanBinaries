@@ -34,6 +34,48 @@ fi
 echo "OPENMPFLAGS=$OPENMPFLAGS"
 sleep 1
 
+# Test if 'override' exists
+EXTRACXXFLAGS=""
+
+cat << EOF > "overridetest.cpp"
+struct A
+{
+    virtual void f() { x = 10; }
+    int x;
+};
+
+struct B : public A
+{
+    void f() override { x = 11; }
+};
+
+int main(void)
+{
+    B b;
+    return 0;
+}
+EOF
+
+if ! gcc -std=c++0x -c -o "overridetest.o" "overridetest.cpp" >/dev/null 2>&1 ; then
+	EXTRACXXFLAGS="$EXTRACXXFLAGS -Doverride="
+fi
+
+cat << EOF > "steadyclocktest.cpp"
+#include <chrono>
+
+int main(void)
+{
+    auto t0 = std::chrono::steady_clock::now();
+    return 0;
+}
+EOF
+
+if ! gcc -std=c++0x -c -o "steadyclocktest.o" "steadyclocktest.cpp" >/dev/null 2>&1 ; then
+	EXTRACXXFLAGS="$EXTRACXXFLAGS -Dsteady_clock=system_clock"
+fi
+
+echo "EXTRACXXFLAGS=$EXTRACXXFLAGS"
+
 echo "Building GSL"
 (
 cd gsl-1.16/ ; 
@@ -70,19 +112,19 @@ cat << EOF > $PREF/src/version.h
 #endif // SIMPACT_CYAN_VERSION_H
 EOF
 
-DEFINES="-DEVENTBASE_ALWAYS_CHECK_NANTIME -DTIFFVERSION=4"
+DEFINES="-DEVENTBASE_ALWAYS_CHECK_NANTIME -DTIFFVERSION=4 $EXTRACXXFLAGS"
 
 source simpactsourceinfo
 
 # Release
 echo "Compiling simpact-cyan-release"
-(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/simpact-cyan-release $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
 echo "Compiling maxart-release"
-(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -DNDEBUG -O2 -o $STARTDIR/../exec/maxart-release $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
 
 # Debug
 echo "Compiling simpact-cyan-debug"
-(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -g -o $STARTDIR/../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/simpact-cyan-debug $DEFINES $LIBINCLUDES $INCLUDES $SIMPACTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
 echo "Compiling maxart-debug"
-(cd "$PREF" ; $CXX -std=c++11 $OPENMPFLAGS -g -o $STARTDIR/../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
+(cd "$PREF" ; $CXX -std=c++0x $OPENMPFLAGS -g -o $STARTDIR/../exec/maxart-debug $DEFINES $LIBINCLUDES $INCLUDES $MAXARTSRC $LIBGSL $LIBGSLCBLAS $LIBTIFF -lz )
 
